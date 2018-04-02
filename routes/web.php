@@ -72,8 +72,19 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>'isLogin'],fu
 
 //商品分类
     Route::get('cate/index','CateController@index');
+
 //添加分类
     Route::get('cate/cate','CateController@create');
+        //添加分类
+    Route::get('cate/create','CateController@add');
+    Route::post('cate/store','CateController@store');
+
+//删除分类
+    Route::get('cate/delete/{id}','CateController@delete');
+
+//修改分类
+    Route::get('cate/edit/{id}','CateController@edit');
+    Route::post('cate/update/{id}','CateController@update');
 
 //订单
     //订单列表
@@ -117,8 +128,23 @@ Route::get('home/logout','home\IndexController@logout');
 Route::get('home/userinfo','home\UserController@userinfo');
 
 
+
 //订单
     Route::get('home/order/index','home\orderController@index');
 
+//我的订单
+Route::get('home/orderGoods','home\UserController@OrderGoods');
+
+
+
+
+
+
+//前台商品列表
+Route::get('home/liebiao/{id}','home\IndexController@liebiao');
+
+
+//搜索框
+Route::post('/home/sousuo','home\IndexController@sousuo');
 
 

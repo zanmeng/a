@@ -7,7 +7,9 @@
       <meta name="renderer" content="webkit">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+
         <meta name="csrf-token" content="{{ csrf_token() }}">
+
       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       {{--<link rel="stylesheet" href="./css/font.css">--}}
       {{--<link rel="stylesheet" href="./css/xadmin.css">--}}
@@ -36,6 +38,7 @@
       </div>
       <div class="x-body">
         <div class="layui-row">
+
           <form class="layui-form layui-col-md12 x-so" action="/admin/order/index" method="get">
             <div class="layui-input-inline">
               <select name="num">
@@ -95,6 +98,7 @@
         <xblock>
           <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
           {{--<button class="layui-btn" onclick="x_admin_show('添加用户','./order-add.html')"><i class="layui-icon"></i>添加</button>--}}
+
           <span class="x-right" style="line-height:40px">共有数据：88 条</span>
         </xblock>
         <table class="layui-table">
@@ -103,6 +107,7 @@
               <th>
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
               </th>
+
               <th>订单id</th>
               <th>订单编号</th>
               <th>订单人</th>
@@ -118,6 +123,7 @@
               </tr>
           </thead>
           <tbody>
+
           @foreach($orders as $v)
             <tr>
               <td>
@@ -162,6 +168,7 @@
         </table>
         <div class="page">
           <div>
+
 
             {!! $orders->appends($request->all())->render()!!}
             {{--<a class="prev" href="">&lt;&lt;</a>--}}
@@ -228,6 +235,7 @@
                 //     layer.msg('已启用!',{icon: 5,time:1000});
                 // }
 
+
             });
         }
 
@@ -248,8 +256,10 @@
                     }
                 });
 
+
             });
         }
+
 
 
 
@@ -289,7 +299,8 @@
           hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
           var s = document.getElementsByTagName("script")[0];
           s.parentNode.insertBefore(hm, s);
-        })();</script>
+        })();
+      </script>
     </body>
 
   </html>

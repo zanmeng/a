@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>小米商城</title>
     <link rel="stylesheet" type="text/css" href="/home/css/style.css">
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/admin/lib/layui/layui.all.js"></script>
+    <script src="/admin/lib/layui/layui.js"></script>
+    <link rel="stylesheet" href="/admin/lib/layui/css/layui.css">
 </head>
 <body>
 <!-- start header -->
@@ -58,31 +62,62 @@
     <a href="{{url('home/index')}}"><div class="logo fl"></div></a>
     <a href=""><div class="ad_top fl"></div></a>
     <div class="nav fl">
-        <ul>
-            <li><a href="./liebiao.html" target="_blank">小米手机</a></li>
-            <li><a href="">红米</a></li>
-            <li><a href="">平板·笔记本</a></li>
-            <li><a href="">电视</a></li>
-            <li><a href="">盒子·影音</a></li>
-            <li><a href="">路由器</a></li>
-            <li><a href="">智能硬件</a></li>
-            <li><a href="">服务</a></li>
-            <li><a href="">社区</a></li>
+        <ul class="layui-nav">
+            <li class="layui-nav-item"><a href="">最新活动</a></li>
+            {{--@foreach($res as $v)--}}
+                {{--@if($v->catstatus==0)--}}
+{{--                    @foreach($v->good as $vv)--}}
+                    {{--<li class="layui-nav-item" style="height:260px;">--}}
+                        {{--<dd><a href="javascript:;">{{$v->catname}}</a></dd>--}}
+                        {{--@foreach($v->good as $vv)--}}
+                        {{--<dl class="layui-nav-child">--}}
+                            {{--<div>--}}
+                                {{--<div><a href=""><img src="{{$vv->gpic}}"  style="width:100px;height:100px;" alt=""> </a></div>--}}
+                                 {{--<div style="color:red;font-size: 20px;"> {{ $vv->gname }}</div>--}}
+                                {{--<div><a href="javascript:;">￥{{$vv->price}}</a></div>--}}
+                            {{--</div>--}}
+                        {{--</dl>--}}
+                        {{--@endforeach--}}
+
+                    {{--</li>--}}
+                    {{--@endforeach--}}
+                {{--@endif--}}
+            {{--@endforeach--}}
+            <li class="layui-nav-item"><a href="">社区</a></li>
         </ul>
+
     </div>
+
+
+
     <div class="search fr">
-        <form action="" method="post">
+        <form action="/home/sousuo" method="post">
+            {{ csrf_field() }}
             <div class="text fl">
-                <input type="text" class="shuru"  placeholder="小米6&nbsp;小米MIX现货">
+                <input type="text" class="shuru" name="gname"  value=""  placeholder="请输入搜索条件">
             </div>
             <div class="submit fl">
-                <input type="submit" class="sousuo" value="搜索"/>
+                <input type="submit"  class="sousuo" value="搜索"/>
+
             </div>
             <div class="clear"></div>
         </form>
         <div class="clear"></div>
     </div>
 </div>
+
+<script>
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //监听导航点击
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
+</script>
+
 <!-- end banner_x -->
 @section('content')
 

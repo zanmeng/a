@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Model\homeUser;
 use App\Model\ordergoods;
 use App\Model\orders;
@@ -9,38 +10,37 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
+
 class ordersController extends Controller
 {
     //显示页面
+
     public function list(Request $request)
     {
 //        $orders = orders::all();
 //        echo  $request->input('orderStatus');
 
-       // 4. 多条件并分页
-        $user = orders::orderBy('orderId','asc')
-            ->where(function($query) use($request){
+        // 4. 多条件并分页
+        $user = orders::orderBy('orderId', 'asc')
+            ->where(function ($query) use ($request) {
                 //检测关键字
                 $createTime = $request->input('createTime');
                 $orderNum = $request->input('orderNum');
                 $orderStatus = $request->input('orderStatus');
                 //如果下单时间不为空
-                if(!empty($createTime)) {
-                    $query->where('createTime','like','%'.$createTime.'%');
+                if (!empty($createTime)) {
+                    $query->where('createTime', 'like', '%' . $createTime . '%');
                 }
                 //如果订单号不为空
-                if(!empty($orderNum)) {
-                    $query->where('orderNum','like','%'.$orderNum.'%');
+                if (!empty($orderNum)) {
+                    $query->where('orderNum', 'like', '%' . $orderNum . '%');
                 }
                 //如果订单号不为空
-                if(!empty($orderStatus)) {
-                    $query->where('orderStatus',$orderStatus);
+                if (!empty($orderStatus)) {
+                    $query->where('orderStatus', $orderStatus);
                 }
             })
             ->paginate($request->input('num', 5));
-
-
-
 
 
         //  根据id=1的用户详情，获取关联的用户表的信息
@@ -62,24 +62,24 @@ class ordersController extends Controller
 
 
 //        return view('admin.order.list',compact('orders'));
-        return view('admin.order.list',['orders'=>$user, 'request'=> $request]);
+        return view('admin.order.list', ['orders' => $user, 'request' => $request]);
     }
 
     public function destroy($id)
     {
-        $user =orders::find($id);
+        $user = orders::find($id);
 
         $res = $user->delete();
-        if($res){
+        if ($res) {
 //            json格式的接口信息  {'status':是否成功，'msg'：提示信息}
             $arr = [
-                'status'=>0,
-                'msg'=>'删除成功'
+                'status' => 0,
+                'msg' => '删除成功'
             ];
-        }else{
+        } else {
             $arr = [
-                'status'=>1,
-                'msg'=>'删除失败'
+                'status' => 1,
+                'msg' => '删除失败'
             ];
         }
         return $arr;
@@ -97,13 +97,13 @@ class ordersController extends Controller
 
         if ($res) {
             $data = [
-                'status'=>0,
-                'msg'=>'删除成功'
+                'status' => 0,
+                'msg' => '删除成功'
             ];
-        }else{
+        } else {
             $data = [
-                'status'=>1,
-                'msg'=>'删除失败'
+                'status' => 1,
+                'msg' => '删除失败'
             ];
         }
         return $data;
@@ -119,26 +119,26 @@ class ordersController extends Controller
 
         //用户的状态
 //        $status =  ($request->input('status') == 1)? :2;
-        if($request->status==1){
+        if ($request->status == 1) {
             $status = 2;
-        }else {
-            $status =1;
+        } else {
+            $status = 1;
         }
 
         //修改状态
         $user = orders::find($uid);
-        $res = $user->update(['orderStatus'=>$status]);
+        $res = $user->update(['orderStatus' => $status]);
 
-        if($res){
+        if ($res) {
 //            json格式的接口信息  {'status':是否成功，'msg'：提示信息}
             $arr = [
-                'status'=>0,
-                'msg'=>'修改成功'
+                'status' => 0,
+                'msg' => '修改成功'
             ];
-        }else{
+        } else {
             $arr = [
-                'status'=>1,
-                'msg'=>'修改失败'
+                'status' => 1,
+                'msg' => '修改失败'
             ];
         }
 
@@ -146,12 +146,12 @@ class ordersController extends Controller
 
     }
 
-    public function show(Request $request,$orderNum)
+    public function show(Request $request, $orderNum)
     {
 //        echo  $orderNum;
 //        return $request->all();
 //        echo $a;
-        $orders = ordergoods::where('orderNum',$orderNum)->get();
+        $orders = ordergoods::where('orderNum', $orderNum)->get();
 //        dd($orders) ;
 //        $orders = DB::table('ordergoods')
 //            ->join('orders', 'ordergoods.orderNum', '=', 'orders.orderNum')
@@ -169,7 +169,7 @@ class ordersController extends Controller
 //
 //
 //        dd($orders);
-        return view('admin.order.show',compact('orders'));
+        return view('admin.order.show', compact('orders'));
     }
-
 }
+

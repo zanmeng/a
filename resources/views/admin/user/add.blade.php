@@ -11,7 +11,12 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/admin/css/font.css">
     <link rel="stylesheet" href="/admin/css/xadmin.css">
+<<<<<<< HEAD
     <script type="text/javascript" src="/admin/js/jquery-3.2.1.min.js"></script>    <script type="text/javascript" src="/admin/lib/layui/layui.js" charset="utf-8"></script>
+=======
+    <script type="text/javascript" src="/admin/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/admin/lib/layui/layui.js" charset="utf-8"></script>
+>>>>>>> 039fc95dd7ecffb7b250374abc0f13163ecd569a
     <script type="text/javascript" src="/admin/js/xadmin.js"></script>
 </head>
 

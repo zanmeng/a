@@ -15,12 +15,6 @@ class GoodController extends Controller
      */
     public function index(Request $request)
     {
-//        $input=$request->input('gname');
-//        $good=Goods::all();
-//        $good=Goods::paginate(2);
-//        return view('Admin.goods',compact('good'));
-
-
         $good = Goods::orderBy('gid','asc')
             ->where(function($query) use($request){
                 //检测关键字
@@ -40,8 +34,10 @@ class GoodController extends Controller
                     $query->where('price','<',$gprice);
                 }
             })
-            ->paginate($request->input('num', 2));
-        return view('Admin.goods',['good'=>$good, 'request'=> $request]);
+
+            ->paginate($request->input('num', 5));
+        return view('Admin.good.goods',['good'=>$good, 'request'=> $request]);
+
     }
 
     /**
@@ -52,7 +48,7 @@ class GoodController extends Controller
     public function create()
     {
         //添加页面
-        return view('Admin.add');
+        return view('Admin.good.add');
     }
 
     /**
@@ -70,8 +66,6 @@ class GoodController extends Controller
                        'tid'=>$input['tid'],
                        'price'=>$input['price'],
                        'stock'=>$input['stock'],
-                       'salecnt'=>$input['salecnt'],
-                       'vcnt'=>$input['vcnt'],
                         'gpic'=>$input['goodspic'],
                        'gdesc'=>$input['gdesc'],
                     ]);
@@ -111,7 +105,7 @@ class GoodController extends Controller
     public function edit($id)
     {
         $good=Goods::findOrFail($id);
-        return view('Admin.edit',compact('good'));
+        return view('Admin.good.edit',compact('good'));
     }
 
     /**
@@ -135,7 +129,8 @@ class GoodController extends Controller
             'price'=>$goods['price'],
             'stock'=>$goods['stock'],
             'gdesc'=>$goods['gdesc'],
-            'gpic'=>$goods['gpic'],
+            'gpic'=>$goods['goodspic'],
+
             ]);
 
         if($res){
@@ -181,7 +176,8 @@ class GoodController extends Controller
     public function changestatus(Request $request){
         //用户id
         $uid = $request->input('id');
-        //用户的状态
+//        return $uid;
+//        用户的状态
         $status =  ($request->input('status') == 1)? 0:1;
 
         //修改状态
