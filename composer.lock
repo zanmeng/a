@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "5a0edabe899f7ed5e00ea6eaba064e5e",
+=======
+    "content-hash": "b7904d07d1e1765a0a199aa11d6301a3",
+>>>>>>> 3afb90855cded969fe9a3bd33fb128cd75a73612
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -321,6 +325,7 @@
             "time": "2017-06-15T17:19:42+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "gregwar/captcha",
             "version": "v1.1.5",
             "source": {
@@ -374,6 +379,8 @@
             "time": "2017-12-30T16:18:44+00:00"
         },
         {
+=======
+>>>>>>> 3afb90855cded969fe9a3bd33fb128cd75a73612
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {

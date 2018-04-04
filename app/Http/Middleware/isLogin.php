@@ -18,8 +18,9 @@ class isLogin
         if(session()->get('user')){
 
             return $next($request);
-        }else{
-            return redirect('admin/login')->with('errors','你是个没素质的家伙!!!');
+        }else {
+
+            return redirect('admin/login')->with('errors', '你是个没素质的家伙!!!');
         }
 
     }

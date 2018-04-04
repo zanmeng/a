@@ -9,8 +9,77 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
+use App\Model\Role;
+
 class UserController extends Controller
 {
+
+
+
+    //返回角色授权页面
+    public function auth($userId)
+    {
+        //根据ID获取用户
+        $user = User::find($userId);
+        //获取所有的角色
+        $role = Role::get();
+
+        //获取当前用户已经被授予的角色
+        $own_roles = $user->role;
+//        dd($own_roles);
+
+        //当前用户拥有的角色的ID列表
+        $own_roleids = [];
+        foreach ($own_roles as $v){
+            $own_roleids[] = $v->roleId;
+        }
+
+
+        return view('admin.user.auth',compact('user','role','own_roleids'));
+    }
+
+
+    //处理角色授权
+    public function doAuth(Request $request)
+    {
+        $input = $request->except('_token');
+        $userId = $input['userId'];
+//        dd($userId);
+
+        DB::beginTransaction();
+
+        try{
+            //要执行的sql语句
+            //删除当前角色被赋予的所有权限
+            DB::table('user_role')->where('userId',$userId)->delete();
+
+            if(!empty($input['roleId'])){
+                //将提交的数据添加到 角色权限关联表
+                foreach ($input['roleId'] as $v){
+                    DB::table('user_role')->insert([
+                        'userId'=>$input['userId'],
+                        'roleId'=>$v
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+            return redirect('admin/user');
+
+
+        }catch(Exception $e){
+            DB::rollBack();
+            return redirect()->back()
+                ->withErrors(['error' => $e->getMessage()]);
+        }
+
+
+
+
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +87,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
         $user = User::orderBy('userId','asc')
             ->where(function($query) use($request){
                 //检测关键字
@@ -33,7 +103,9 @@ class UserController extends Controller
                 }
             })
             ->paginate($request->input('num', 5));
+
         return view('admin.user.list',['user'=>$user, 'request'=> $request]);
+
 
 
 
@@ -77,7 +149,8 @@ class UserController extends Controller
             'phone'=>$input['phone'],
             'email'=>$input['email'],
             'sex'=>$input['sex'],
-            'userType'=>$input['userType'],
+
+
             ]);
 
         //根据添加是否成功,进行页面跳转
@@ -115,9 +188,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function edit($userId)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($userId);
 
         return view('admin.user.edit',compact('user'));
     }
@@ -140,7 +214,8 @@ class UserController extends Controller
             'sex'=>$input['sex'],
             'phone'=>$input['phone'],
             'email'=>$input['email'],
-            'userType'=>$input['userType'],
+
+
         ]);
         if($res){
 //            json格式的接口信息  {'status':是否成功，'msg'：提示信息}
@@ -167,18 +242,22 @@ class UserController extends Controller
     public function destroy($userId)
     {
         $user = User::find($userId);
-//        return 1234;
+
 
         $res = $user->delete();
         if($res){
 //            json格式的接口信息  {'status':是否成功，'msg'：提示信息}
             $arr = [
+
                 'status'=>0,
+
                 'msg'=>'删除成功'
             ];
         }else{
             $arr = [
+
                 'status'=>1,
+
                 'msg'=>'删除失败'
             ];
         }
@@ -223,7 +302,7 @@ class UserController extends Controller
     {
         //获取请求参数中，要删除的用户的id
         $ids = $request->input('ids');
-//        return $ids;
+
 //        删除ids里存储的用户的id对应的用户
         $res = User::destroy($ids);
 
@@ -243,4 +322,5 @@ class UserController extends Controller
         return $data;
 
     }
+
 }

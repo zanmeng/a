@@ -16,6 +16,8 @@ Route::get('/', function () {
 });*/
 
 
+//后台
+
 
 Route::group(['prefix'=>'admin','namespace'=>'admin'],function(){
 
@@ -30,28 +32,43 @@ Route::group(['prefix'=>'admin','namespace'=>'admin'],function(){
     Route::post('dologin','LoginController@dologin');
 
     Route::get('jiami','LoginController@jiami');
+
+
+
+});
+//没有权限返回的页面
+Route::get('admin/noaccess',function(){
+    return view('admin.errors.auth');
 });
 
 
-    //后台
-Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>'isLogin'],function(){
+Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>['isLogin','hasRole']],function(){
 
-    //后天首页
+    //后台首页
     Route::get('index','IndexController@index');
 
+    //后台信息页
 
-    //后天信息页
     Route::get('info','IndexController@info');
 
     //退出  登录
     Route::get('logout','IndexController@logout');
 
+
+    //后台个人信息
+    Route::get('user/info','UserController@info');
+
     //后台用户模块
+    Route::get('user/auth/{id}','UserController@auth');
+    Route::post('user/doauth','UserController@doAuth');
+
+
     //启用  禁用
     Route::post('user/changestatus','UserController@changestatus');
 
     //批量删除
     Route::get('user/delall','UserController@delall');
+
 
     Route::resource('user','UserController');
 
@@ -104,7 +121,37 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>'isLogin'],fu
     //订单详情
     Route::get('order/show/{orderNum}','ordersController@show');
 
+    //后台用户
+    Route::resource('user','UserController');
+
+    //角色模块
+    Route::get('role/auth/{id}','RoleController@auth');
+    Route::post('role/doauth','RoleController@doAuth');
+    Route::resource('role','RoleController');
+
+    //权限模块
+    Route::resource('permission','PermissionController');
+
+    //网站配置模块
+
+    Route::get('config/putfile','ConfigController@putFile');
+
+    //批量修改网络配置项
+    Route::post('config/changecontent','ConfigController@changecontent');
+    Route::resource('config','ConfigController');
+
+    //评论模块
+    Route::get('comment','CommentController@index');
+    //启用  禁用
+    Route::post('comment/changestatus','CommentController@changestatus');
+
+    //删除
+    Route::get('comment/delete/{id}','CommentController@delete');
+
+
+
 });
+
 
 
 
@@ -171,5 +218,6 @@ Route::get('home/jisuan/jiaodian','home\jisuanController@jiaodian');
 
 //购物车
 Route::resource('home/Cart/shoppingCart','home\CartController');
+
 
 

@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>小米商城</title>
     <link rel="stylesheet" type="text/css" href="/home/css/style.css">
+
     <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/admin/lib/layui/layui.all.js"></script>
     <script src="/admin/lib/layui/layui.js"></script>
     <link rel="stylesheet" href="/admin/lib/layui/css/layui.css">
+
 
 </head>
 <body>
@@ -59,6 +61,7 @@
 <!--end header -->
 
 <!-- start banner_x -->
+<<<<<<< HEAD
 
 <div class="banner_x center" >
     <a href="{{url('home/index')}}"><div class="logo fl"></div></a>
@@ -100,12 +103,14 @@
             <div class="submit fl">
                 <input type="submit"  class="sousuo" value="搜索"/>
 
+
             </div>
             <div class="clear"></div>
         </form>
         <div class="clear"></div>
     </div>
 </div>
+
 
 
 <script>

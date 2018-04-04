@@ -99,6 +99,25 @@ class LoginController extends Controller
         //6.获取用户信息到session
         Session::put('user',$user);
 
+        //获取当前登录用户拥有的权限
+        //        2.1 获取到当前用户拥有的角色
+        $roles = $user->role;
+//        dd($roles);
+        $arr=[];
+        foreach ($roles as $v){
+            //        2.2 获取当前角色拥有的权限
+            $pers = $v->permission;
+            foreach ($pers as $n){
+//                遍历当前角色拥有的权限，获取权限记录的per_url字段
+                $arr[] = $n->per_url;
+            }
+        }
+
+//        去掉重复的权限
+
+        $arr = array_unique($arr);
+        Session::push('auth',$arr);
+
         //7.都正确的话进入后台首页
 
         return redirect('admin/index');

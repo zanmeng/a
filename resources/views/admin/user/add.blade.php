@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.0</title>
+
+    <title>用户添加</title>
+
     <meta name="renderer" content="webkit">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -12,8 +14,10 @@
     <link rel="stylesheet" href="/admin/css/font.css">
     <link rel="stylesheet" href="/admin/css/xadmin.css">
 
+
     <script type="text/javascript" src="/admin/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/admin/lib/layui/layui.js" charset="utf-8"></script>
+
 
     <script type="text/javascript" src="/admin/js/xadmin.js"></script>
 </head>
@@ -70,6 +74,7 @@
                 <span class="x-red">*</span>
             </div>
         </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label"><span class="x-red">*</span>角色</label>
             <div class="layui-input-inline">
@@ -81,6 +86,7 @@
                 </select>
             </div>
         </div>
+
         <div class="layui-form-item">
             <label for="L_pass" class="layui-form-label">
                 <span class="x-red">*</span>密码
@@ -163,6 +169,7 @@
 
 
 
+
             // console.log(data);
             //发异步，把数据提交给php
             // layer.alert("增加成功", {icon: 6},function () {
@@ -171,6 +178,7 @@
             //     //关闭当前frame
             //     parent.layer.close(index);
             // });
+
             return false;
         });
 
