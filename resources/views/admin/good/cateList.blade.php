@@ -36,9 +36,16 @@
 </div>
 
 <div class="x-body" >
-    <xblock>
-        <button class="layui-btn"><i class="layui-icon"></i>商品分类</button>
-    </xblock>
+<xblock>
+<button class="layui-btn"><i class="layui-icon"></i>商品分类</button>
+<div>
+    @if (!empty(session('error')))
+        {{  session('error') }}
+    @elseif(!empty(session('msg') ))
+        {{   session('msg') }}
+    @endif
+</div>
+</xblock>
     <table class="layui-table">
         <thead>
         <tr>
@@ -49,10 +56,7 @@
                 分类名称
             </th>
             <th>
-                父分类
-            </th>
-            <th>
-                路径
+                分类状态
             </th>
             <th>
                 操作
@@ -71,25 +75,22 @@
                     {{$v->catname}}
                 </td>
                 <td>
-                    {{$v->parentId}}
+                    {{$v->catstatus}}
                 </td>
                 <td>
-                    {{$v->path}}
-                </td>
-                <td>
-                    <a class="link-update" href="/admin/cate/edit/{{$v->catId}}">修改</a>
-                    <a class="link-del" href="/admin/cate/delete/{{$v->catId}}">删除</a>
+                    <a class="layui-btn layui-btn-normal" href="/admin/cate/edit/{{$v->catId}}">修改</a>
+                    <a class="layui-btn layui-btn-danger" href="/admin/cate/delete/{{$v->catId}}">删除</a>
+                    <a class="layui-btn" href="/admin/cate/create/{{$v->catId}}">添加子商品</a>
                 </td>
             </tr>
 
             </tbody>
-        @endforeach;
+        @endforeach
     </table>
     <div class="page">
         <div>
         </div>
     </div>
-
 </div>
 <script>
     layui.use('laydate', function(){
@@ -105,92 +106,6 @@
             elem: '#end' //指定元素
         });
     });
-
-    /*用户-停用*/
-    function member_stop(obj,gid){
-
-        var status=$(obj).attr('status');
-        layer.confirm('确认要停用吗？',function(index){
-
-            if($(obj).attr('title')=='启用'){
-
-                $.ajax({
-                    type: "POST",
-                    // headers: {
-                    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    // // },
-                    url: "/admin/good/changestatus",
-                    data: {'id':gid,'status':status},
-                    dataType: "json",
-                    success: function(data){
-                        //发异步把用户状态进行更改
-                        $(obj).attr('title','停用')
-                        $(obj).find('i').html('&#xe62f;');
-
-                        $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                        layer.msg('已停用!',{icon: 5,time:1000});
-                    }
-                });
-            }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
-            }
-
-        });
-    }
-
-    /*用户-删除*/
-    function member_del(obj,gid){
-        //获取用户ID
-        layer.confirm('确认要删除吗？',function(index){
-            // $.post('请求的路径','携带的参数'，执行成功后的返回结果)
-            $.post("{{ url('admin/good/') }}/"+gid,{'_token':"{{csrf_token()}}",'_method':'delete'},function(data){
-                //如果删除成功
-                if(data.status == 0){
-                    //发异步删除数据
-                    $(obj).parents("tr").remove();
-                    layer.msg('已删除!',{icon:1,time:1000});
-                }else{
-                    layer.msg('删除失败!',{icon:1,time:1000});
-                }
-            });
-        });
-    }
-
-    //
-    //
-    function delAll () {
-
-        var data = tableCheck.getData();
-
-        //获取所有的复选框
-        var gid=$('.layui-form-checked').not('.header').each(function(i,v){
-            //声明数组获取复选框中的data-id属性值
-            var ids=[];
-            ids.push($(v).attr('data-id'))
-            // console.log(ids);
-
-            $.get('/admin/good/delall',{"ids":ids},function(data){
-                if(data.status==0){
-                    layer.msg('删除成功', {icon: 1});
-                    $(".layui-form-checked").not('.header').parents('tr').remove();
-                }else{
-                    layer.msg('删除失败', {icon: 2});
-                }
-
-            });
-
-        })
-        //
-        // layer.confirm('确认要删除吗？'+data,function(index){
-        //     //捉到所有被选中的，发异步进行删除
-        //     layer.msg('删除成功', {icon: 1});
-        //     $(".layui-form-checked").not('.header').parents('tr').remove();
-        // });
-    }
 </script>
 <script>var _hmt = _hmt || []; (function() {
         var hm = document.createElement("script");

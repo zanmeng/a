@@ -78,16 +78,16 @@
                 销量
             </th>
             <th>
-                浏览量
-            </th>
-            <th>
                 图片
             </th>
             <th>
                 商品描述
             </th>
             <th>
-                状态
+                商品状态【默认为0】
+            </th>
+            <th>
+                上下架
             </th>
             <th>
                 操作
@@ -120,16 +120,14 @@
                     {{$v->salecnt}}
                 </td>
                 <td>
-                    {{$v->vcnt}}
-                </td>
-
-                <td>
                     <img  src="{{ $v->gpic }}" width="300" height="100" alt="">
                 </td>
                 <td>
                     {{$v->gdesc}}
                 </td>
-
+                <td>
+                    {{$v->gstatus}}
+                </td>
                 <td class="td-status">
                     <span class="layui-btn layui-btn-normal layui-btn-mini">
 
@@ -159,7 +157,7 @@
             </tr>
 
             </tbody>
-        @endforeach;
+        @endforeach
     </table>
     <div class="page">
         <div>

@@ -36,6 +36,7 @@ class GoodController extends Controller
             })
 
             ->paginate($request->input('num', 5));
+
         return view('Admin.good.goods',['good'=>$good, 'request'=> $request]);
 
     }
@@ -129,6 +130,7 @@ class GoodController extends Controller
             'price'=>$goods['price'],
             'stock'=>$goods['stock'],
             'gdesc'=>$goods['gdesc'],
+            'gstatus'=>$goods['gstatus'],
             'gpic'=>$goods['goodspic'],
 
             ]);
@@ -176,7 +178,6 @@ class GoodController extends Controller
     public function changestatus(Request $request){
         //用户id
         $uid = $request->input('id');
-//        return $uid;
 //        用户的状态
         $status =  ($request->input('status') == 1)? 0:1;
 

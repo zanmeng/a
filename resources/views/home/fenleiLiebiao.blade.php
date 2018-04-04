@@ -2,6 +2,9 @@
 
 @section('content')
 
+<style>
+	.banner_x{height:200px;}
+</style>
 	<!-- start banner_y -->
 	<!-- end banner -->
 
@@ -9,12 +12,12 @@
 
 		<div class="danpin center">
 			<div class="biaoti center" style="background: #ddd;font-size: 30px;">
-				<span style="margin-left: 20px;">
-					{{$res[0]->catname}}
+				<span style="margin-left: 50px;">
+					{{$ress[0]->catname}}
 				</span>
 			</div>
-			<div class="main center mb20">
-				@foreach ($res as $v)
+			<div class="main center mb20" style="">
+				@foreach ($ress as $v)
 					@foreach($v->good as $vv)
 						<div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
 							<div class="sub_mingxing"><a href=""><img src="{{$vv->gpic}}" alt=""></a></div>

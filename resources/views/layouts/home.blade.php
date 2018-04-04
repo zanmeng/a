@@ -58,34 +58,33 @@
 <!--end header -->
 
 <!-- start banner_x -->
-<div class="banner_x center">
+<div class="banner_x center" >
     <a href="{{url('home/index')}}"><div class="logo fl"></div></a>
     <a href=""><div class="ad_top fl"></div></a>
-    <div class="nav fl">
+    <div class="nav fl" style="float: left;">
         <ul class="layui-nav">
-            <li class="layui-nav-item"><a href="">最新活动</a></li>
-            {{--@foreach($res as $v)--}}
-                {{--@if($v->catstatus==0)--}}
-{{--                    @foreach($v->good as $vv)--}}
-                    {{--<li class="layui-nav-item" style="height:260px;">--}}
-                        {{--<dd><a href="javascript:;">{{$v->catname}}</a></dd>--}}
-                        {{--@foreach($v->good as $vv)--}}
-                        {{--<dl class="layui-nav-child">--}}
-                            {{--<div>--}}
-                                {{--<div><a href=""><img src="{{$vv->gpic}}"  style="width:100px;height:100px;" alt=""> </a></div>--}}
-                                 {{--<div style="color:red;font-size: 20px;"> {{ $vv->gname }}</div>--}}
-                                {{--<div><a href="javascript:;">￥{{$vv->price}}</a></div>--}}
-                            {{--</div>--}}
-                        {{--</dl>--}}
-                        {{--@endforeach--}}
+            <li class="layui-nav-item"   ><a href="">最新活动</a></li>first
+            @foreach($res as $v)
+                @if($v->catstatus==2)
+            <li class="layui-nav-item">
+                    <a href="javascript:;">{{$v->catname}}</a>
 
-                    {{--</li>--}}
-                    {{--@endforeach--}}
-                {{--@endif--}}
-            {{--@endforeach--}}
-            <li class="layui-nav-item"><a href="">社区</a></li>
+                <dl class="layui-nav-child" style="float:left;z-index:9999;"> <!-- 二级菜单 -->
+                    @foreach($v->good as $vv)
+                        <div style="position:relative;float:left">
+{{--                    <dd><a href=""><img src="{{$vv->gpic}}"  style="width:100px;height:100px;" alt=""> </a>--}}
+                    <div style="color:deepskyblue;font-size: 20px;"><a href="">{{$vv->gname }}</a></div>
+{{--                    <dd><a href="javascript:;">￥{{$vv->price}}</a></dd>--}}
+                        </div>
+                    @endforeach
+                </dl>
+
+            </li>
+                @endif
+            @endforeach
+
+            <li class="layui-nav-item"  style="float:left;" ><a href="">社区</a></li>
         </ul>
-
     </div>
 
 

@@ -86,6 +86,11 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>'isLogin'],fu
     Route::get('cate/edit/{id}','CateController@edit');
     Route::post('cate/update/{id}','CateController@update');
 
+//添加子商品
+    Route::get('cate/create/{cid}','CateController@create');
+
+
+
 //订单
     //订单列表
     Route::get('order/index','ordersController@list');
@@ -98,10 +103,7 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>'isLogin'],fu
     //订单详情
     Route::get('order/show/{orderNum}','ordersController@show');
 
-
 });
-
-
 
 
 //前台
