@@ -83,6 +83,8 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>'isLogin'],fu
     Route::get('cate/edit/{id}','CateController@edit');
     Route::post('cate/update/{id}','CateController@update');
 
+//添加子商品
+    Route::get('cate/create/{cid}','CateController@create');
 });
 
 

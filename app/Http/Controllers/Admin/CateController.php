@@ -11,7 +11,6 @@ class CateController extends Controller
     //分类列表
     public  function index(){
         $cate=Cate::all();
-//        dd($cate);
         return view('Admin.good.cateList',compact('cate'));
     }
 
@@ -24,6 +23,7 @@ class CateController extends Controller
         $request->except('_token');
         $res=Cate::create(
             ['catName'=>$request['catName'],
+              'catstatus'=>$request['catstatus'],
             ]);
         if($res){
             echo '添加成功';
@@ -33,15 +33,20 @@ class CateController extends Controller
 
     //删除分类
     public function delete($id){
-        $res=Cate::where('catId',$id)->delete();
-        if($res){
-            return redirect('/admin/cate/index');
+//        获取传过来要删除类
+        $res=Cate::where('catId',$id);
+//        判断要删除的类下是否有商品
+        $good=Cate::with('good')->where('catId',$id)->get();
+        $rr=$good['0']->good;
+        if($rr->count() !=0 ){
+            return back()->with('error','删除失败，该分类下有商品不能删除');
         }else{
-            return back()->with('error','删除失败');
+            $res->delete();
+            return redirect('/admin/cate/index')->with('msg','删除成功');
         }
     }
 
-    //修改分类
+    //修改分类s
     public function edit($id){
 //        根据id查找数据
         $cate=Cate::findOrFail($id);
@@ -50,14 +55,20 @@ class CateController extends Controller
 
     public function update(Request $request,$id){
         $input=Cate::findOrFail($id);
-        $res=$input->update(['catname'=>$request['catName'],]);
+        $res=$input->update(['catname'=>$request['catName'],
+            'catstatus'=>$request['catstatus'],
+                ]);
         if($res){
-            echo '修改成功';
-            return redirect(url('admin/cate/index'));
+            return redirect(url('admin/cate/index'))->with('msg','修改成功');
         }else{
             echo '修改失败';
             return back();
         }
+    }
+
+    //添加商品
+    public function create($cid){
+        return view('Admin.good.Cgoodadd',compact('cid'));
     }
 
 }

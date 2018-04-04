@@ -84,6 +84,19 @@
                 </div>
             </div>
 
+
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    <span class="x-red">*</span>商品状态描述
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="gstatus" required="" lay-verify=""
+                           autocomplete="off" value="{{$good->gstatus}}" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                </div>
+            </div>
+
             <div class="layui-form-item">
                 <label for="desc" class="layui-form-label">
                     <span class="x-red">*</span>缩略图上传

@@ -53,6 +53,19 @@
         </div>
 
         <div class="layui-form-item">
+            <label for="desc" class="layui-form-label">
+                <span class="x-red">*</span>分类状态
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="desc" name="catstatus" value="{{ $cate->catstatus }}" required="" lay-verify=""
+                       autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
             <input type="submit">
