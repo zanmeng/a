@@ -69,7 +69,7 @@
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
                     <cite>角色管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
+                    <i class="iconfont nav_right">&#xe6a7;</i>
                 </a>
                 <ul class="sub-menu">
                     <li>
@@ -109,6 +109,21 @@
                         <a _href="{{url('admin/config')}}">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>网站配置列表</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>评论管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="{{url('admin/comment')}}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>评论列表</cite>
                         </a>
                     </li >
                 </ul>

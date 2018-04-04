@@ -33,7 +33,7 @@
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
         <button class="layui-btn" onclick="x_admin_show('','{{ url('admin/config/create') }}',600,400)"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+        <span class="x-right" style="line-height:40px"></span>
       </xblock>
       <table class="layui-table">
         <thead>
@@ -125,28 +125,7 @@
           })
       }
 
-      /*用户-删除*/
 
-      /*//下午问一下讲师
-      function member_del(conf_id)
-      {
-          layer.confirm('您确定要删除我吗？', {   // 使用layer.js确认弹窗
-              btn: ['确定', '取消'],
-          }, function() {                        // 当确定时执行
-              $.post("{{ url('admin/config') }}/"+conf_id, {    // 网址、数据、成功后操作
-                  "_token": "{{ csrf_token() }}",
-                  "_method": "delete"
-              }, function(data) {
-                  if (data.status == 1) {
-                      layer.msg('删除成功', { icon: 6});
-                      location.href = "{{ url('admin/config') }}";
-                  } else {
-                      layer.msg('删除失败', { icon: 5});
-                      location.href = "{{ url('admin/config') }}";
-                  }
-              });
-          });
-      }*/
 
       /*用户-删除*/
       function member_del(obj,conf_id){

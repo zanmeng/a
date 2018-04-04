@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.0</title>
+    <title>用户列表</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -54,7 +54,7 @@
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delall()"><i class="layui-icon"></i>批量删除</button>
         <button class="layui-btn" onclick="x_admin_show('添加用户','{{ url('admin/user/create') }}',600,400)"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+        <span class="x-right" style="line-height:40px"></span>
     </xblock>
     <table class="layui-table">
         <thead>
@@ -141,7 +141,7 @@
         var status = $(obj).attr('status');
 
 
-        layer.confirm('确认要停用吗？',function(index){
+        layer.confirm('确认启停用吗？',function(index){
 
             if($(obj).attr('title')=='启用'){
 

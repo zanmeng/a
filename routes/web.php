@@ -81,6 +81,16 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>['isLogin','h
     //批量修改网络配置项
     Route::post('config/changecontent','ConfigController@changecontent');
     Route::resource('config','ConfigController');
+
+    //评论模块
+    Route::get('comment','CommentController@index');
+    //启用  禁用
+    Route::post('comment/changestatus','CommentController@changestatus');
+
+    //删除
+    Route::get('comment/delete/{id}','CommentController@delete');
+
+
 });
 
 

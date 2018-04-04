@@ -33,7 +33,7 @@
 
 
 
-        <form class="layui-form layui-col-md12 x-so" action="/admin/permission" method="get">
+        <form class="layui-form layui-col-md12 x-so" action="/admin/comment" method="get">
             <div class="layui-input-inline">
                 <select name="num">
                     <option value="5"
@@ -46,44 +46,48 @@
                     </option>
                 </select>
             </div>
-            <input type="text" name="name" value="{{$request->per_name}}" placeholder="请输入权限名" autocomplete="off" class="layui-input">
+            <input type="text" name="name" value="{{$request->nickname}}" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+            <input type="text" name="content" value="{{$request->content}}" placeholder="请输入相关内容" autocomplete="off" class="layui-input">
             <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
     </div>
-    <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','{{ url('admin/permission/create') }}',600,400)"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px"></span>
+    <xblock style="background-color: #2ab27b">
+        {{--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>--}}
+
+        {{--<span class="x-right" style="line-height:40px"></span>--}}
     </xblock>
     <table class="layui-table">
         <thead>
         <tr>
             <th>
-                <div class="layui-unselect header layui-form-checkbox"  lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>权限名</th>
-            <th>权限路由</th>
+            <th>昵称</th>
+            <th>头像</th>
+            <th>内容</th>
+            <th>状态</th>
             <th>操作</th></tr>
         </thead>
         <tbody>
 
-        @foreach($permission as $v)
+        @foreach($comment as $v)
             <tr>
                 <td>
-                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{{$v->permissionId}}'><i class="layui-icon">&#xe605;</i></div>
+                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{{$v->id}}'><i class="layui-icon">&#xe605;</i></div>
                 </td>
-                <td>{{$v->permissionId}}</td>
-                <td>{{ $v->per_name }}</td>
-                <td>{{ $v->per_url }}</td>
-                <td>
-
-
-                    <a title="编辑"  onclick="x_admin_show('编辑','{{  url('admin/permission/'.$v->permissionId.'/edit') }}',600,400)" href="javascript:;">
-                        <i class="layui-icon">&#xe642;</i>
+                <td>{{$v->id}}</td>
+                <td>{{ $v->nickname }}</td>
+                <td><img src="{{ $v->head_pic }}"></td>
+                <td>{{ $v->content }}</td>
+                <td class="td-status">
+                    <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
+                <td class="td-manage">
+                    <a onclick="member_stop(this,{{ $v->id }})" href="javascript:;" status="{{ $v->status }}"  title="启用">
+                        <i class="layui-icon">&#xe601;</i>
                     </a>
 
-                    <a title="删除" onclick="member_del(this,{{ $v->permissionId }})" href="javascript:;">
+                    <a title="删除" onclick="member_del(this,{{ $v->id }})" href="javascript:;">
                         <i class="layui-icon">&#xe640;</i>
                     </a>
                 </td>
@@ -94,7 +98,7 @@
     </table>
     <div class="page">
 
-        {!! $permission->appends($request->all())->render() !!}
+        {!! $comment->appends($request->all())->render() !!}
     </div>
 
 </div>
@@ -113,35 +117,77 @@
         });
     });
 
+    /*用户-停用*/
+    function member_stop(obj,id){
+        //获取要改变状态的用户的id
+
+        //获取当前改变用户的状态
+        var status = $(obj).attr('status');
 
 
-    /*用户-删除*/
-    function member_del(obj,userId){
+            layer.confirm('确认启停用吗?',function(index){
+
+            if($(obj).attr('title')=='启用'){
+
+
+                $.ajax({
+                    type: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "/admin/comment/changestatus",
+                    data: {'id':id,'status':status},
+                    dataType: "json",
+                    success: function(data){
+                        //发异步把用户状态进行更改
+                        $(obj).attr('title','停用');
+                        $(obj).find('i').html('&#xe62f;');
+
+                        $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                        layer.msg('已停用!',{icon: 5,time:1000});
+                    }
+                });
+
+
+
+            }else{
+
+                    $(obj).attr('title', '启用');
+                    $(obj).find('i').html('&#xe601;');
+
+                    $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                    layer.msg('已启用!', {icon: 5, time: 1000});
+
+            }
+
+        })
+    }
+
+    /!*用户-删除*!/
+    function member_del(obj,id) {
         //获取用户ID
 
 
-
-        layer.confirm('确认要删除吗？',function(index){
+        layer.confirm('确认要删除吗？', function (index) {
 
             // $.post('请求的路径','携带的参数'，执行成功后的返回结果)
-            $.post("{{ url('admin/permission/') }}/"+permissionId,{'_token':"{{csrf_token()}}",'_method':'delete'},function(data){
+            $.get('/admin/comment/delete/'+id,function (data) {
                 //如果删除成功
-                if(data.status == 1){
+                if (data.status == 1) {
                     //发异步删除数据
                     $(obj).parents("tr").remove();
-                    layer.msg('已删除!',{icon:1,time:1000});
-                }else{
-                    layer.msg('删除失败!',{icon:1,time:1000});
+                    layer.msg('已删除!', {icon: 1, time: 1000});
+                } else {
+                    layer.msg('删除失败!', {icon: 2, time: 1000});
                 }
             });
 
 
-
         });
+
     }
 
-
-    function delAll () {
+   /* function delAll () {
 
 
 
@@ -151,10 +197,10 @@
         $('.layui-form-checked').not('.header').each(function(i,v){
             ids.push($(v).attr('data-id'));
 
-    });
+    });*/
 
 
-        $.get('/admin/permission/delall',{"ids":ids},function(data){
+        $.get('/admin/role/delall',{"ids":ids},function(data){
             //后台如果删除成功，在前台上也把相关记录删除掉
             if(data.status == 1){
                 layer.msg('删除成功', {icon: 1});
