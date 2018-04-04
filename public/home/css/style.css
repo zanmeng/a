@@ -242,9 +242,9 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 
 
 /*订单中心*/
-.grzxbj .selfinfo .rtcont .ddxq{width: 938px;height: 120px;line-height: 120px;font-size: 17px;color:rgb(117,117,117); 
+.grzxbj .selfinfo .rtcont .ddxq{width: 938px;height: 140px;line-height: 120px;font-size: 17px;color:rgb(117,117,117);
 	border-bottom: 1px solid #ccc;padding-left: 40px;}
-.grzxbj .selfinfo .rtcont .ddxq .ddspt{width: 80px;height: 80px;margin: 19px 25px 0 0;border:1px solid #aaa;}
+.grzxbj .selfinfo .rtcont .ddxq .ddspt{width: 80px;height: 80px;margin: 0px 30px 0 0;/*border:1px solid #aaa;*/}
 .grzxbj .selfinfo .rtcont .ddxq .ztxx ul li{display: inline-block;width: 130px;height: 60px;line-height:60px;float: left;border-left:1px solid #aaa; margin-top: 30px;text-align: center;}
 .grzxbj .selfinfo .rtcont .ddxq .ztxx ul li a{color:rgb(117,117,117);}
 .grzxbj .selfinfo .rtcont .ddxq .ztxx ul li a:hover{color:#ff6700;}
