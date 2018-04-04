@@ -73,6 +73,7 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>'isLogin'],fu
 //商品分类
     Route::get('cate/index','CateController@index');
 
+
 //添加分类
     Route::get('cate/cate','CateController@create');
         //添加分类
@@ -106,6 +107,7 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>'isLogin'],fu
 });
 
 
+
 //前台
 //前台首页
 Route::get('home/index','home\IndexController@index');
@@ -131,11 +133,13 @@ Route::get('home/userinfo','home\UserController@userinfo');
 
 
 
+
 //订单
+    //订单详情页
     Route::get('home/order/index','home\orderController@index');
 
-//我的订单
-Route::get('home/orderGoods','home\UserController@OrderGoods');
+    //我的订单
+    Route::get('home/orderGoods','home\UserController@OrderGoods');
 
 
 
@@ -148,5 +152,24 @@ Route::get('home/liebiao/{id}','home\IndexController@liebiao');
 
 //搜索框
 Route::post('/home/sousuo','home\IndexController@sousuo');
+
+
+
+
+//商品
+//商品详情
+Route::get('home/detail','home\GoodsController@detail');
+
+//成功加入购物车
+Route::get('home/ToCart','home\InToCartController@ToCart');
+//Route::get('home/Cart/index','home\CartController@index');
+
+//商品加减 焦点
+Route::get('home/jisuan/jia','home\jisuanController@jia');
+Route::get('home/jisuan/jian','home\jisuanController@jian');
+Route::get('home/jisuan/jiaodian','home\jisuanController@jiaodian');
+
+//购物车
+Route::resource('home/Cart/shoppingCart','home\CartController');
 
 

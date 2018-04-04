@@ -8,6 +8,7 @@
     <script src="/admin/lib/layui/layui.all.js"></script>
     <script src="/admin/lib/layui/layui.js"></script>
     <link rel="stylesheet" href="/admin/lib/layui/css/layui.css">
+
 </head>
 <body>
 <!-- start header -->
@@ -58,6 +59,7 @@
 <!--end header -->
 
 <!-- start banner_x -->
+
 <div class="banner_x center" >
     <a href="{{url('home/index')}}"><div class="logo fl"></div></a>
     <a href=""><div class="ad_top fl"></div></a>
@@ -105,6 +107,7 @@
     </div>
 </div>
 
+
 <script>
     layui.use('element', function(){
         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
@@ -116,6 +119,7 @@
         });
     });
 </script>
+
 
 <!-- end banner_x -->
 @section('content')

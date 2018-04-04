@@ -14,10 +14,12 @@ class CateController extends Controller
 
         return view('Admin.good.cateList',compact('cate'));
 
+
     }
 
     //添加子分类
     public function add(){
+
 
         return view('Admin.good.cateAdd');
     }
@@ -73,5 +75,6 @@ class CateController extends Controller
     public function create($cid){
         return view('Admin.good.Cgoodadd',compact('cid'));
     }
+
 
 }

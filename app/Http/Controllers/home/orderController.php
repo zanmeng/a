@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\home;
 
+use App\Model\Cate;
 use App\Model\homeUser;
 use App\Model\orderGoods;
 use App\Model\orders;
@@ -26,6 +27,10 @@ class orderController extends Controller
         $userName= session()->get('user')->userName;
 //        dd($login_id);
 
+        //类下的商品
+        $res=Cate::with('good')->get();
+//        dd($res);
+
         //拿购物车信息
        $carts= DB::table('carts')
             ->leftJoin('goods','carts.gid','=','goods.gid')
@@ -38,13 +43,13 @@ class orderController extends Controller
         $address = DB::table('address')->where('login_id',$login_id)->where('status','1')->get();
 //        $address = DB::select('select * from address where login_id = :id and status = :status' ,['id' => $login_id,'status' => 1]);
 //        dd($address);
-        if(!empty($address)){
-           echo  23;
-        }
-        die;
-        foreach ($address as $v ) {
-
-        }
+//        if(!empty($address)){
+////           echo  23;
+//        }
+//        die;
+//        foreach ($address as $v ) {
+//
+//        }
         // 求总数量和总金额
         $orderCnt = 0;  // 总数量
         $orderMoney = 0;  // 总金额
@@ -68,7 +73,7 @@ class orderController extends Controller
 //       dd($time) ;
 //        if(!empty(session('message')) && !empty(session('url')) && !empty(session('jumpTime'))){
             //添加到订单表
-           $res= orders::create(['orderNum'=>$orderNum,
+           $res11= orders::create(['orderNum'=>$orderNum,
                                'userName'=>$userName,
                                 'createTime'=>$time,
                                 'login_id'=>$login_id,
@@ -81,7 +86,7 @@ class orderController extends Controller
            //添加到订单表详情表
 //        dd($carts);
         foreach ($carts as $v ){
-           $res2 = orderGoods::create(['orderNum'=>$orderNum,
+           $res12 = orderGoods::create(['orderNum'=>$orderNum,
                                         'goodsName'=>$v->gname,
                                         'goodsVersion'=>$v->version,
                                         'goodsColor'=>$v->color,
@@ -104,14 +109,14 @@ class orderController extends Controller
 //            DB::rollBack();
 //        }
 
-
+//        dd($res);
 
 
 
 
 
         //显示模板及数据
-        return view('home.order.index',compact('carts','orderNum'));
+        return view('home.order.index',compact('res','orderNum','carts'));
 
 
 

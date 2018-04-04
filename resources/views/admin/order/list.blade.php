@@ -8,7 +8,9 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
 
+
         <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       {{--<link rel="stylesheet" href="./css/font.css">--}}
@@ -21,8 +23,10 @@
         {{--<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>--}}
         {{--<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>--}}
       <![endif]-->
+
       @include('admin.public.style')
       @include('admin.public.script')
+
     </head>
 
     <body>
@@ -38,6 +42,7 @@
       </div>
       <div class="x-body">
         <div class="layui-row">
+
 
           <form class="layui-form layui-col-md12 x-so" action="/admin/order/index" method="get">
             <div class="layui-input-inline">
@@ -108,6 +113,7 @@
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
               </th>
 
+
               <th>订单id</th>
               <th>订单编号</th>
               <th>订单人</th>
@@ -123,6 +129,7 @@
               </tr>
           </thead>
           <tbody>
+
 
           @foreach($orders as $v)
             <tr>
@@ -164,10 +171,12 @@
               </td>
             </tr>
             @endforeach
+
           </tbody>
         </table>
         <div class="page">
           <div>
+
 
 
             {!! $orders->appends($request->all())->render()!!}
@@ -177,6 +186,7 @@
             {{--<a class="num" href="">3</a>--}}
             {{--<a class="num" href="">489</a>--}}
             {{--<a class="next" href="">&gt;&gt;</a>--}}
+
           </div>
         </div>
 
@@ -195,6 +205,7 @@
             elem: '#end' //指定元素
           });
         });
+
 
          /*发货*/
         /*用户-停用*/
@@ -236,11 +247,13 @@
                 // }
 
 
+
             });
         }
 
         /*用户-删除*/
         function member_del(obj,id){
+
             //获取用户ID
 
             layer.confirm('确认要删除吗？',function(index){
@@ -257,8 +270,10 @@
                 });
 
 
+
             });
         }
+
 
 
 
@@ -299,8 +314,10 @@
           hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
           var s = document.getElementsByTagName("script")[0];
           s.parentNode.insertBefore(hm, s);
+
         })();
       </script>
+
     </body>
 
   </html>

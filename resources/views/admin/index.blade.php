@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="{{ url('/admin/css/font.css') }}">
     <link rel="stylesheet" href="{{ url('/admin/css/xadmin.css') }}">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
     <script type="text/javascript" src="/admin/js/jquery.min.js"></script>
+
     <script src="{{ url('/admin/lib/layui/layui.js') }}" charset="utf-8"></script>
     <script type="text/javascript" src="{{ url('/admin/js/xadmin.js') }}"></script>
 
@@ -101,17 +103,19 @@
                             <li>
                                 <a _href="/admin/cate/index">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>分类列表</cite>
+                                    <cite>商品分类</cite>
 
                                 </a>
                             </li >
                             <li>
+
                                 <a _href="/admin/cate/create">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>添加分类</cite>
 
                                 </a>
                             </li>
+
                         </ul>
                     </li>
                 </ul>
@@ -126,6 +130,7 @@
                 <ul class="sub-menu">
                     <li>
                         <a _href="order/index">
+
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
                         </a>

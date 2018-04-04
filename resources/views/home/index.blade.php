@@ -5,9 +5,11 @@
         /*position: relative;top:-10px;*/
     }
 </style>
+
 @extends('layouts.home')
 
 @section('content')
+
 
 <div class="banner_y center" >
     {{--轮播图--}}
@@ -50,10 +52,12 @@
                 </div>
             </li>
             @endforeach
+
         </ul>
     </div>
 
 </div>
+
 
 
 <script>
@@ -131,8 +135,6 @@
                     </div>
                 </div>
         @endif
-
-
 
     @endforeach
 

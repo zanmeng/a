@@ -15,6 +15,7 @@ class GoodController extends Controller
      */
     public function index(Request $request)
     {
+
         $good = Goods::orderBy('gid','asc')
             ->where(function($query) use($request){
                 //检测关键字
@@ -35,9 +36,11 @@ class GoodController extends Controller
                 }
             })
 
+
             ->paginate($request->input('num', 5));
 
         return view('Admin.good.goods',['good'=>$good, 'request'=> $request]);
+
 
     }
 
@@ -49,7 +52,9 @@ class GoodController extends Controller
     public function create()
     {
         //添加页面
+
         return view('Admin.good.add');
+
     }
 
     /**
@@ -107,6 +112,7 @@ class GoodController extends Controller
     {
         $good=Goods::findOrFail($id);
         return view('Admin.good.edit',compact('good'));
+
     }
 
     /**
@@ -132,6 +138,7 @@ class GoodController extends Controller
             'gdesc'=>$goods['gdesc'],
             'gstatus'=>$goods['gstatus'],
             'gpic'=>$goods['goodspic'],
+
 
             ]);
 
@@ -178,7 +185,9 @@ class GoodController extends Controller
     public function changestatus(Request $request){
         //用户id
         $uid = $request->input('id');
+
 //        用户的状态
+
         $status =  ($request->input('status') == 1)? 0:1;
 
         //修改状态

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cate extends Model
 {
     //
+
     public $table='cats';
     public $primaryKey='catId';
     public  $timestamps=false;

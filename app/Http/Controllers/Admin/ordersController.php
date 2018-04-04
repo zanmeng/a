@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 
+
 use App\Model\homeUser;
 use App\Model\ordergoods;
 use App\Model\orders;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+
 
 
 class ordersController extends Controller
@@ -172,4 +174,5 @@ class ordersController extends Controller
         return view('admin.order.show', compact('orders'));
     }
 }
+
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class orders extends Model
 {
 
+
     //  1. 模型关联的数据表
     public $table = 'orders';
 
@@ -25,6 +26,7 @@ class orders extends Model
 //        return $this->hasOne(要关联的模型，外键，当前模型的主键);
         return $this->hasOne('App\Model\homeUser','login_id','orderId');
     }
+
 
 
 }
