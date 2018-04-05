@@ -19,10 +19,12 @@ class User extends Model
 //    4. 是否允许批量操作字段
     public $guarded = [];
 
+
     // 定义跟角色模型关联的属性
     public function role()
     {
         return $this->belongsToMany('App\Model\Role','user_role','userId','roleId');
     }
 }
+
 

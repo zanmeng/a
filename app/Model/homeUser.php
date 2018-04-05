@@ -17,14 +17,16 @@ class homeUser extends Model
     public $guarded = [];
 
 
+
     //关联模型 前台用户表homeuser和用户详情表一对一关联
+
 
     public function userinfo()
     {
         return $this->hasOne('App\Model\userinfo','uid','login_id');
 
     }
-
+    
 
     //关联模型 前用户表homeuser和购物车表一对一关联
     public function homeUser()

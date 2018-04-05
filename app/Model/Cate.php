@@ -8,6 +8,7 @@ class Cate extends Model
 {
     //
 
+
     public $table='cats';
     public $primaryKey='catId';
     public  $timestamps=false;
@@ -18,5 +19,6 @@ class Cate extends Model
     {
         return $this->hasMany('App\Model\Goods','tid','catId');
     }
+
 
 }

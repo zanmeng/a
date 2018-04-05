@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
+
 use App\Model\Role;
 
 class UserController extends Controller
@@ -108,7 +109,6 @@ class UserController extends Controller
 
 
 
-
     }
 
     /**
@@ -149,8 +149,6 @@ class UserController extends Controller
             'phone'=>$input['phone'],
             'email'=>$input['email'],
             'sex'=>$input['sex'],
-
-
             ]);
 
         //根据添加是否成功,进行页面跳转
@@ -214,8 +212,6 @@ class UserController extends Controller
             'sex'=>$input['sex'],
             'phone'=>$input['phone'],
             'email'=>$input['email'],
-
-
         ]);
         if($res){
 //            json格式的接口信息  {'status':是否成功，'msg'：提示信息}
@@ -250,14 +246,11 @@ class UserController extends Controller
             $arr = [
 
                 'status'=>0,
-
                 'msg'=>'删除成功'
             ];
         }else{
             $arr = [
-
                 'status'=>1,
-
                 'msg'=>'删除失败'
             ];
         }
@@ -302,7 +295,6 @@ class UserController extends Controller
     {
         //获取请求参数中，要删除的用户的id
         $ids = $request->input('ids');
-
 //        删除ids里存储的用户的id对应的用户
         $res = User::destroy($ids);
 

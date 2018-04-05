@@ -6,6 +6,7 @@
     }
 </style>
 
+
 @extends('layouts.home')
 
 @section('content')
@@ -53,11 +54,11 @@
             </li>
             @endforeach
 
+
         </ul>
     </div>
 
 </div>
-
 
 
 <script>

@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\home;
 
-
-
 use App\Model\Cate;
 use App\Model\Goods;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
 
 class IndexController extends Controller
 {
+
 
     //首页显示
     public function index()

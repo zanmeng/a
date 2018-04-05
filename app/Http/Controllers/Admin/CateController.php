@@ -11,15 +11,11 @@ class CateController extends Controller
     //分类列表
     public  function index(){
         $cate=Cate::all();
-
         return view('Admin.good.cateList',compact('cate'));
-
-
     }
 
     //添加子分类
     public function add(){
-
 
         return view('Admin.good.cateAdd');
     }
@@ -75,6 +71,7 @@ class CateController extends Controller
     public function create($cid){
         return view('Admin.good.Cgoodadd',compact('cid'));
     }
+
 
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\home;
 
 use App\Model\homeUser;
+use App\Model\userinfo;
 use App\Org\code\Code;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,6 +38,7 @@ class LoginController extends Controller
             'username'=>'required|between:6,10',
             'password'=>'required|between:6,10',
         ];
+
         //留言
         $msg = [
             'username.required'=>'用户名不能为空',
@@ -117,6 +119,7 @@ class LoginController extends Controller
 
         $user = homeUser::where('userName',$input['username'])->first();
 
+        userinfo::create(['uid'=>$user->login_id,'phone'=>$input['phone']]);
         //
         //6.获取用户存入session
         Session()->put('user',$user);

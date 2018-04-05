@@ -35,11 +35,11 @@ class GoodController extends Controller
                     $query->where('price','<',$gprice);
                 }
             })
-
-
+            
             ->paginate($request->input('num', 5));
 
         return view('Admin.good.goods',['good'=>$good, 'request'=> $request]);
+
 
 
     }
@@ -53,7 +53,9 @@ class GoodController extends Controller
     {
         //添加页面
 
+
         return view('Admin.good.add');
+
 
     }
 
@@ -111,7 +113,9 @@ class GoodController extends Controller
     public function edit($id)
     {
         $good=Goods::findOrFail($id);
+
         return view('Admin.good.edit',compact('good'));
+
 
     }
 
@@ -138,6 +142,7 @@ class GoodController extends Controller
             'gdesc'=>$goods['gdesc'],
             'gstatus'=>$goods['gstatus'],
             'gpic'=>$goods['goodspic'],
+
 
 
             ]);
@@ -177,17 +182,16 @@ class GoodController extends Controller
                 'status'=>1,
                 'msg'=>'删除失败',
             ];
-    }
-    return $arr;
+        }
+        return $arr;
     }
 
     //启用停用
     public function changestatus(Request $request){
         //用户id
         $uid = $request->input('id');
-
+        
 //        用户的状态
-
         $status =  ($request->input('status') == 1)? 0:1;
 
         //修改状态

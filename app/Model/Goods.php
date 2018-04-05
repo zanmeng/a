@@ -12,7 +12,6 @@ class Goods extends Model
     public $timestamps=false;
     public $guarded=[];
 
-
     //与模型表Version多对多关联
     public function Version()
     {
@@ -24,6 +23,7 @@ class Goods extends Model
     {
         return $this->belongsToMany('App\Model\Color','goodforcolor','gid','colorId');
     }
+
 
 
 }

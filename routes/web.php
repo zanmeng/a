@@ -18,7 +18,6 @@ Route::get('/', function () {
 
 //后台
 
-
 Route::group(['prefix'=>'admin','namespace'=>'admin'],function(){
 
     //后台登录
@@ -34,7 +33,6 @@ Route::group(['prefix'=>'admin','namespace'=>'admin'],function(){
     Route::get('jiami','LoginController@jiami');
 
 
-
 });
 //没有权限返回的页面
 Route::get('admin/noaccess',function(){
@@ -48,7 +46,6 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>['isLogin','h
     Route::get('index','IndexController@index');
 
     //后台信息页
-
     Route::get('info','IndexController@info');
 
     //退出  登录
@@ -61,7 +58,6 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>['isLogin','h
     //后台用户模块
     Route::get('user/auth/{id}','UserController@auth');
     Route::post('user/doauth','UserController@doAuth');
-
 
     //启用  禁用
     Route::post('user/changestatus','UserController@changestatus');
@@ -90,9 +86,6 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>['isLogin','h
 //商品分类
     Route::get('cate/index','CateController@index');
 
-
-//添加分类
-    Route::get('cate/cate','CateController@create');
         //添加分类
     Route::get('cate/create','CateController@add');
     Route::post('cate/store','CateController@store');
@@ -109,6 +102,7 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>['isLogin','h
 
 
 
+
 //订单
     //订单列表
     Route::get('order/index','ordersController@list');
@@ -120,6 +114,7 @@ Route::group(['prefix'=>'admin','namespace'=>'admin','middleware'=>['isLogin','h
     Route::post('order/changestatus','ordersController@changestatus');
     //订单详情
     Route::get('order/show/{orderNum}','ordersController@show');
+
 
     //后台用户
     Route::resource('user','UserController');
@@ -178,10 +173,22 @@ Route::get('home/logout','home\IndexController@logout');
 //显示用户信息
 Route::get('home/userinfo','home\UserController@userinfo');
 
+//修改用户信息
+Route::get('home/useredit','home\UserController@useredit');
+Route::get('home/pass','home\UserController@pass');
+Route::post('home/userpass/{id}','home\UserController@repass');
+Route::post('home/upload','home\UserController@upload');
+Route::post('home/userupdate/{id}','home\UserController@userupdate');
+
+//地址管理
+Route::get('home/ajax','home\AddressController@ajax');
+Route::resource('home/address','home\AddressController');
+
 
 
 
 //订单
+
     //订单详情页
     Route::get('home/order/index','home\orderController@index');
 
@@ -218,6 +225,7 @@ Route::get('home/jisuan/jiaodian','home\jisuanController@jiaodian');
 
 //购物车
 Route::resource('home/Cart/shoppingCart','home\CartController');
+
 
 
 

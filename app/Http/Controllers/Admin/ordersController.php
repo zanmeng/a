@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-
-
 use App\Model\homeUser;
 use App\Model\ordergoods;
 use App\Model\orders;
@@ -13,23 +11,26 @@ use Illuminate\Support\Facades\DB;
 
 
 
+
 class ordersController extends Controller
 {
     //显示页面
-
     public function list(Request $request)
     {
 //        $orders = orders::all();
 //        echo  $request->input('orderStatus');
 
+
         // 4. 多条件并分页
         $user = orders::orderBy('orderId', 'asc')
             ->where(function ($query) use ($request) {
+
                 //检测关键字
                 $createTime = $request->input('createTime');
                 $orderNum = $request->input('orderNum');
                 $orderStatus = $request->input('orderStatus');
                 //如果下单时间不为空
+
                 if (!empty($createTime)) {
                     $query->where('createTime', 'like', '%' . $createTime . '%');
                 }
@@ -64,11 +65,14 @@ class ordersController extends Controller
 
 
 //        return view('admin.order.list',compact('orders'));
+
         return view('admin.order.list', ['orders' => $user, 'request' => $request]);
+
     }
 
     public function destroy($id)
     {
+
         $user = orders::find($id);
 
         $res = $user->delete();
@@ -121,14 +125,17 @@ class ordersController extends Controller
 
         //用户的状态
 //        $status =  ($request->input('status') == 1)? :2;
+
         if ($request->status == 1) {
             $status = 2;
         } else {
             $status = 1;
+
         }
 
         //修改状态
         $user = orders::find($uid);
+
         $res = $user->update(['orderStatus' => $status]);
 
         if ($res) {
@@ -148,12 +155,17 @@ class ordersController extends Controller
 
     }
 
+
     public function show(Request $request, $orderNum)
+
     {
 //        echo  $orderNum;
 //        return $request->all();
 //        echo $a;
+
         $orders = ordergoods::where('orderNum', $orderNum)->get();
+
+
 //        dd($orders) ;
 //        $orders = DB::table('ordergoods')
 //            ->join('orders', 'ordergoods.orderNum', '=', 'orders.orderNum')
@@ -171,8 +183,10 @@ class ordersController extends Controller
 //
 //
 //        dd($orders);
+
         return view('admin.order.show', compact('orders'));
     }
 }
+
 
 

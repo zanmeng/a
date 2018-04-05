@@ -99,6 +99,7 @@ class LoginController extends Controller
         //6.获取用户信息到session
         Session::put('user',$user);
 
+
         //获取当前登录用户拥有的权限
         //        2.1 获取到当前用户拥有的角色
         $roles = $user->role;

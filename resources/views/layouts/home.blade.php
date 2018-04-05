@@ -2,14 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>小米商城</title>
     <link rel="stylesheet" type="text/css" href="/home/css/style.css">
+    <script src="/home/css/jquery-min.js"></script>
 
-    <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/admin/lib/layui/layui.all.js"></script>
     <script src="/admin/lib/layui/layui.js"></script>
+    <script src="/admin/js/xadmin.js"></script>
     <link rel="stylesheet" href="/admin/lib/layui/css/layui.css">
-
 
 </head>
 <body>
@@ -62,6 +63,7 @@
 
 <!-- start banner_x -->
 
+
 <div class="banner_x center" >
     <a href="{{url('home/index')}}"><div class="logo fl"></div></a>
     <a href=""><div class="ad_top fl"></div></a>
@@ -103,12 +105,14 @@
                 <input type="submit"  class="sousuo" value="搜索"/>
 
 
+
             </div>
             <div class="clear"></div>
         </form>
         <div class="clear"></div>
     </div>
 </div>
+
 
 
 

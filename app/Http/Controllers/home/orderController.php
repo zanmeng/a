@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\home;
 
+
 use App\Model\Cate;
 use App\Model\homeUser;
 use App\Model\orderGoods;
@@ -42,9 +43,9 @@ class orderController extends Controller
         //拿地址信息
         $address = DB::table('address')->where('login_id',$login_id)->where('status','1')->get();
 //        $address = DB::select('select * from address where login_id = :id and status = :status' ,['id' => $login_id,'status' => 1]);
-//        dd($address);
+//        var_dump($address);
 //        if(!empty($address)){
-////           echo  23;
+//           echo  23;
 //        }
 //        die;
 //        foreach ($address as $v ) {
@@ -116,7 +117,7 @@ class orderController extends Controller
 
 
         //显示模板及数据
-        return view('home.order.index',compact('res','orderNum','carts'));
+        return view('home.order.index',compact('res','orderNum','carts','address'));
 
 
 
@@ -155,7 +156,6 @@ class orderController extends Controller
         }
         return $arr;
     }
-
 
 
 }

@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="{{ url('/admin/css/xadmin.css') }}">
     {{--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>--}}
 
-
     <script type="text/javascript" src="/admin/js/jquery.min.js"></script>
 
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="{{ url('/admin/lib/layui/layui.js') }}" charset="utf-8"></script>
     <script type="text/javascript" src="{{ url('/admin/js/xadmin.js') }}"></script>
@@ -26,6 +26,7 @@
 <div class="container">
 
     <div class="logo"><a href="./index.html">快乐的小松鼠</a></div>
+
 
     <div class="left_open">
         <i title="展开左侧栏" class="iconfont">&#xe699;</i>
@@ -45,6 +46,7 @@
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
 
+
             <a href="javascript:;">{{session()->get('user')->userName}}</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
 
@@ -53,6 +55,7 @@
             </dl>
         </li>
         <li class="layui-nav-item to-index"><a href="/home/index">前台首页</a></li>
+
 
     </ul>
 
@@ -79,6 +82,7 @@
                     </li >
 
 
+
                 </ul>
             </li>
 
@@ -95,6 +99,15 @@
                             <cite>角色列表</cite>
                         </a>
                     </li >
+
+                    <li>
+                        <a _href="{{ url('admin/user/create') }}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加用户</cite>
+
+                        </a>
+                    </li>
+
                 </ul>
             </li>
 
@@ -123,21 +136,23 @@
                                 <a _href="/admin/cate/index">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>商品分类</cite>
-
-                                </a>
-                            </li >
-                            <li>
-
-                                <a _href="/admin/cate/create">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>添加分类</cite>
-
                                 </a>
                             </li>
+                               <li>
+                                   <a _href="/admin/cate/create">
+                                       <i class="iconfont">&#xe6a7;</i>
+                                       <cite>添加分类</cite>
+                                   </a>
+                               </li>
 
                         </ul>
                     </li>
                 </ul>
+
+
+
+
+            </li>
 
 
 
@@ -160,6 +175,7 @@
                 </ul>
             </li>
 
+
 {{---------------------------------------}}
         <li>
             <a href="javascript:;">
@@ -176,6 +192,7 @@
                 </li >
             </ul>
         </li>
+
 
             <li>
                 <a href="javascript:;">
@@ -213,6 +230,7 @@
             </li>
             <li>
                 <a href="javascript:;">
+
                     <i class="iconfont">&#xe723;</i>
                     <cite>网站配置管理</cite>
                 </a>
@@ -235,6 +253,7 @@
                 <ul class="sub-menu">
                     <li>
 
+
                         <a _href="{{url('admin/comment')}}">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>评论列表</cite>
@@ -245,7 +264,7 @@
 
 
             </ul>
-            </li>
+
         </ul>
     </div>
 </div>

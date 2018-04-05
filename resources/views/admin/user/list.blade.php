@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
 
+
     <title>用户列表</title>
+
 
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -55,9 +57,11 @@
     </div>
     <xblock>
 
-        <button class="layui-btn layui-btn-danger" onclick="delall()"><i class="layui-icon"></i>批量删除</button>
+
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
         <button class="layui-btn" onclick="x_admin_show('添加用户','{{ url('admin/user/create') }}',600,400)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px"></span>
+
 
     </xblock>
     <table class="layui-table">
@@ -72,7 +76,9 @@
             <th>手机</th>
             <th>邮箱</th>
 
+
             <th>角色</th>
+
 
             <th>状态</th>
             <th>操作</th></tr>
@@ -117,10 +123,12 @@
                         <i class="layui-icon">&#xe642;</i>
                     </a>
 
+
                     <a  href="{{ url('admin/user/auth/'.$v->userId) }}"   title="授权">
                         <i class="layui-icon">&#xe631;</i>
                     </a>
-                    <a title="删除" onclick="member_del(this,{{ $v->userId }})" href="javascript:;">
+                    <a title="删除" onclick="member_del(this,'{{ $v->userId }}')" href="javascript:;">
+
 
                         <i class="layui-icon">&#xe640;</i>
                     </a>
@@ -182,42 +190,55 @@
 
                         $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
                         layer.msg('已停用!', {icon: 5, time: 1000});
-
                     }
                 });
 
-            }else{
-                $(obj).attr('title','启用');
-                $(obj).find('i').html('&#xe601;');
 
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
+            } else {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "post",
+                    url: "/admin/user/changestatus",
+                    data: {'userId': userId, 'status': status},
+                    dataType: 'json',
+                    success: function (data) {
+                        $(obj).attr('title', '启用');
+                        $(obj).find('i').html('&#xe601;');
+
+                        $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                        layer.msg('已启用!', {icon: 5, time: 1000});
+                    }
+
+                });
             }
-
-        });
+        })
     }
 
+
     /*用户-删除*/
-    function member_del(obj,userId){
+    function member_del(obj, userId) {
         //获取用户ID
 
 
-
-        layer.confirm('确认要删除吗？',function(index){
+        layer.confirm('确认要删除吗？', function (index) {
 
             // $.post('请求的路径','携带的参数'，执行成功后的返回结果)
-            $.post("{{ url('admin/user/') }}/"+userId,{'_token':"{{csrf_token()}}",'_method':'delete'},function(data){
+            $.post("{{ url('admin/user/') }}/" + userId, {
+                '_token': "{{csrf_token()}}",
+                '_method': 'delete'
+            }, function (data) {
                 //如果删除成功
-                if(data.status == 1){
+                if (data.status == 1) {
                     //发异步删除数据
                     $(obj).parents("tr").remove();
-                    layer.msg('已删除!',{icon:1,time:1000});
-                }else{
-                    layer.msg('删除失败!',{icon:1,time:1000});
+                    layer.msg('已删除!', {icon: 1, time: 1000});
+                } else {
+                    layer.msg('删除失败!', {icon: 1, time: 1000});
 
                 }
             });
-
 
 
         });
@@ -227,12 +248,12 @@
 
     function delAll() {
 
-
         //声明一个空数组，存放所有被选中的复选框的data-id属性值
         var ids = [];
         //获取所有的被选中的复选框
         $('.layui-form-checked').not('.header').each(function (i, v) {
             ids.push($(v).attr('data-id'));
+
 
 
         });
@@ -250,7 +271,7 @@
 
     }
 
-</script>
+
 <script>var _hmt = _hmt || []; (function() {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";

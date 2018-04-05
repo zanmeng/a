@@ -31,6 +31,7 @@
 				{{--</div>--}}
 			{{--</div>--}}
 			<div class="rtcont fr">
+
 				<div class="ddzxbt">确认订单 </div>
                 {{--<div style="display:block;height:40px;margin-top: 10px " >--}}
                     {{--<ul id="a">--}}
@@ -52,6 +53,7 @@
 							<li>{{$v->num}}</li>
 							<li>{{($v->price)*($v->num)}}</li>
 							{{--<li><a href="">订单详情></a></li>--}}
+
 							<div class="clear"></div>
 						</ul>
 					</div>
@@ -95,6 +97,7 @@
                     </div>
                     <div class="clear"></div>
                 </div>
+
 			</div>
 			<div class="clear"></div>
 		</div>
