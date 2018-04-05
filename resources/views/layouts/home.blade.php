@@ -61,7 +61,6 @@
 <!--end header -->
 
 <!-- start banner_x -->
-<<<<<<< HEAD
 
 <div class="banner_x center" >
     <a href="{{url('home/index')}}"><div class="logo fl"></div></a>

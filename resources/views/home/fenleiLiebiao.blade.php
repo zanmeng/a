@@ -4,6 +4,10 @@
 
 <style>
 	.banner_x{height:200px;}
+	.mt20{
+		/*padding-top:250px;*/
+		/*position: relative;top:-10px;*/
+	}
 </style>
 	<!-- start banner_y -->
 	<!-- end banner -->

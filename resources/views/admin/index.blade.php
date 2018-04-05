@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{{ url('/admin/css/font.css') }}">
     <link rel="stylesheet" href="{{ url('/admin/css/xadmin.css') }}">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    {{--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>--}}
 
 
     <script type="text/javascript" src="/admin/js/jquery.min.js"></script>
@@ -141,7 +141,6 @@
 
 
 
-                </ul>
             </li>
 
 
@@ -161,7 +160,7 @@
                 </ul>
             </li>
 
-
+{{---------------------------------------}}
         <li>
             <a href="javascript:;">
                 <i class="iconfont">&#xe723;</i>
@@ -210,17 +209,23 @@
                         </a>
                     </li >
 
-                    <li>
-                        <a href="javascript:;">
-                            <i class="iconfont">&#xe723;</i>
-                            <cite>网站配置管理</cite>
-                        <a _href="{{url('admin/config')}}">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>网站配置列表</cite>
-                        </a>
-                    </li >
                 </ul>
             </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>网站配置管理</cite>
+                </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a _href="/admin/config">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>网站配置列表</cite>
+                            </a>
+                        </li >
+                    </ul>
+            </li>
+
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
@@ -239,8 +244,7 @@
             </li>
 
 
-
-                </ul>
+            </ul>
             </li>
         </ul>
     </div>
