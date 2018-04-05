@@ -321,7 +321,7 @@ class ComposerStaticInit0a62793c768e30a94c781df6d2ff42bd
         'App\\Http\\Controllers\\admin\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/IndexController.php',
         'App\\Http\\Controllers\\admin\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/LoginController.php',
         'App\\Http\\Controllers\\admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/UserController.php',
-        'App\\Http\\Controllers\\home\\Usercontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/home/Usercontroller.php',
+        'App\\Http\\Controllers\\home\\Usercontroller' => __DIR__ . '/../..',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',

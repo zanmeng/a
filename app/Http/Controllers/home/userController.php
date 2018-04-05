@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\home;
 
+use App\Model\Cate;
 use App\Model\homeUser;
 use App\Model\User;
 use App\Model\userinfo;
@@ -19,10 +20,14 @@ class UserController extends Controller
     {
         $uid = Session::get('user')->login_id;
 //        dd($uid);
+
+        //类下的商品
+        $res=Cate::with('good')->get();
+
         //获取数据
         $user = homeUser::with('userinfo')->where('login_id',$uid)->first();
         //显示详情
-        return view('home.userinfo',compact('user'));
+        return view('home.userinfo',compact('user','res'));
     }
 
     //修改个人资料
